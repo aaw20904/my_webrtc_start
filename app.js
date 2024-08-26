@@ -56,6 +56,14 @@ wss.on('connection', function (connection) {
                         sendTo(conn, {type:"candidate", candidate:data.candidate})
                   }
             break;
+            case 'leave':
+             console.log("Disconnecting user from", data.name)
+                  var conn = users[data.name]
+                  conn.otherName = null;
+                  if (conn!= null){
+                        sendTo(conn,{type:"leave"})
+                  }
+            break;
             ///
             default:
                     sendTo(connection, {type: "error",message: "Unrecognized command: " + data.type});
@@ -67,9 +75,20 @@ wss.on('connection', function (connection) {
       connection.on('close', function () {
             if (connection.name) {
             delete users[connection.name];
+              if (connection.otherName){
+                  console.log("disconnect user from",connection.otherName);
+                  var conn = users[connection.otherName]
+                  conn.otherName = null;
+                  if (conn != null){
+                        sendTo(conn,{type:"leave"});
+                  }
+
+              }
             }
       });
 
       //connection.send('Hello World');
 });
 
+
+//page 75
