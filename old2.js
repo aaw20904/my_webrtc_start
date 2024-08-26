@@ -1,5 +1,4 @@
-
-    async function runApp() {
+async function runApp() {
     var videoViews = {}
     //load video elems:
     videoViews.yourVideo = document.querySelector('#yours');
