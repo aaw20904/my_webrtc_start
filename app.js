@@ -8,7 +8,7 @@ function sendTo(conn, message) {
 }
 
 wss.on('connection', function (connection) {
-      console.log("User connected");
+      console.log("User connected..");
       
       connection.on('message', function (message) {
             var data;
