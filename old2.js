@@ -60,7 +60,7 @@ const startPeerConnection = async   (connections, yourStream, videoViews)=>{
     }
     // Begin the offer
     let yourOffer, theirAnswer;
-    yourOffer = await connections.yourConnection.createOffer();
+        yourOffer = await connections.yourConnection.createOffer();
         await connections.yourConnection.setLocalDescription(yourOffer);
         await  connections.theirConnection.setRemoteDescription(yourOffer);
         console.log('your offer has been Created ..')
@@ -79,3 +79,22 @@ const startPeerConnection = async   (connections, yourStream, videoViews)=>{
 runApp();
 
 ///page 59
+
+/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="index.css">
+<title>Learning WebRTC - Chapter 4: Creating a
+RTCPeerConnection</title>
+</head>
+<body>
+<div id="container">
+    <video id="yours" autoplay></video>
+    <video id="theirs" autoplay></video>
+</div>
+<script src="main.js"></script>
+</body>
+</html>
+ */

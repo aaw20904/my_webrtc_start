@@ -1,7 +1,25 @@
-var WebSocketServer = require('ws').Server,
-wss = new WebSocketServer({ port: 8888 });
-var users ={}
 
+const WebSocket = require('ws');
+const express = require('express');
+const http = require('http');
+
+//create....
+const app = express();
+const server = http.createServer(app);//http server
+ 
+var wss = new WebSocket.Server({ server });//WS server
+
+
+// Serve static files (e.g., HTML, CSS, JS)
+app.use(express.static('public'));
+
+
+// Start the server
+server.listen(8080, () => {
+  console.log('Server listening on port 8080');
+});
+
+var users ={}
 
 function sendTo(conn, message) {
   conn.send(JSON.stringify(message));
